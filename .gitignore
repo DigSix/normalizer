@@ -1,0 +1,10 @@
+normalizedfiles/
+notnormalizedfiles/
+__pycache__/
+*/__pycache__/
+**/__pycache__/
+
+.env
+.vscode/
+
+normalizer.tar
