@@ -1,3 +1,4 @@
+import sys
 import time
 import datetime
 from core.processor import processor
@@ -15,9 +16,13 @@ def main():
 
 if __name__ == "__main__":
     threading.Thread(target=start_server, daemon=True).start()
+
+    h = int(sys.argv[1])
+    m = int(sys.argv[2])
+
     while True:
         now = datetime.datetime.now()
-        target = now.replace(hour=8, minute=0, second=0, microsecond=0)
+        target = now.replace(hour=h, minute=m, second=0, microsecond=0)
 
         # 5-second safety margin
         if now > target - datetime.timedelta(seconds=5):
