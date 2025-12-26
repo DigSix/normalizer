@@ -1,9 +1,18 @@
 import os
+from datetime import datetime
 from common.config import NFOLDER, FOLDER
 from modules.extract_name_from_file import extract_name_from_file
 from modules.process_file import process_file
 
 def processor():
+    # Maping files
+    existing_prefixes = set()
+
+    for f in os.listdir(FOLDER):
+        if f.lower().endswith(".txt"):
+            base = f.split("_", 1)[0]  # Remove date
+            existing_prefixes.add(base)
+
     for file in os.listdir(NFOLDER):
         if ".txt" in file.lower() and not file.lower().endswith(".gz"):
             src_path = os.path.join(NFOLDER, file)
@@ -12,11 +21,9 @@ def processor():
             file_name = extract_name_from_file(src_path)
             if not file_name:
                 continue
-
-            dst_path = os.path.join(FOLDER, f"{file_name}.txt")
-
-            if os.path.exists(dst_path):
-                print(f"Skipping: {file_name}.txt already exists locally.")
+            
+            if file_name in existing_prefixes:
+                print(f"Skipping: {file_name} already exists locally.")
                 continue
 
             process_file(src_path, FOLDER)
