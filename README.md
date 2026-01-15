@@ -8,8 +8,6 @@ It downloads files from a remote server, decompresses `.gz` archives, cleans and
 
 This project was built to replace a daily manual workflow, reducing operational effort and minimizing human error.
 
----
-
 ### What it does
 
 - Connects to an SFTP server using environment variables  
@@ -20,8 +18,6 @@ This project was built to replace a daily manual workflow, reducing operational 
 - Can run on a daily schedule or inside Docker  
 - Exposes normalized files through a simple HTTP server  
 
----
-
 ### Stack
 
 - Python 3  
@@ -30,10 +26,9 @@ This project was built to replace a daily manual workflow, reducing operational 
 - gzip / shutil / os  
 - Docker (optional)
 
----
-
 ### Running locally
 
+clone
 ```bash
 git clone https://github.com/DigSix/normalizer
 cd normalizer
@@ -43,14 +38,14 @@ source venv/bin/activate  # Windows: venv\Scripts\activate
 
 pip install -r requirements.txt
 ```
-
+.env
 ```.env
 SFTP_HOST=your.server.com
 SFTP_PORT=22
 SFTP_USER=username
 SFTP_PASS=password
 ```
-
+run
 ```bash
 python main.py hh mm  #First run, 6 hours intervals.
 ```
